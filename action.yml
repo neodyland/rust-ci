@@ -14,6 +14,11 @@ inputs:
         required: false
         type: boolean
         default: false
+    nightly:
+        description: "Will install nightly rust for you"
+        required: false
+        type: boolean
+        default: false
     cache:
         description: "Cache rust for you"
         required: false

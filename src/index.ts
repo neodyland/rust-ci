@@ -144,6 +144,13 @@ async function main() {
     await $(
         "rustup target add aarch64-unknown-linux-gnu x86_64-unknown-linux-gnu",
     );
+    const nightly = trygetBooleanInput("nightly");
+    if (nightly) {
+        await $(`rustup install nightly`);
+        await $(`rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu`);
+        await $(`rustup component add rust-src --toolchain nightly-aarch64-unknown-linux-gnu`);
+        await $(`rustup default nightly`);
+    }
     for (const pkg of packages) {
         let env: Record<string, string> = process.env as Record<string, string>;
         if (openssl_dir && openssl_lib_dir) {
